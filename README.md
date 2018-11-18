@@ -9,11 +9,14 @@ $router->map( 'GET', '/', function() {
     require __DIR__ . '/views/home.php';
 });
 
-// map users details page
+// dynamic named route
 $router->map( 'GET|POST', '/users/[i:id]/', function( $id ) {
   $user = .....
   require __DIR__ . '/views/user/details.php';
-});
+}, 'user-details' );
+
+// echo URL to user-details page for ID 5
+echo $router->generate( 'user-details', array( 'id' => 5 ) ); // Output: "/users/5"
 ```
 
 ## Features
@@ -42,9 +45,9 @@ You need PHP >= 5.3 to use AltoRouter.
 
 ## License
 
-(MIT License)
+MIT License
 
-Copyright (c) 2012-2015 Danny van Kooten <hi@dannyvankooten.com>
+Copyright (c) 2012 Danny van Kooten <hi@dannyvankooten.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
